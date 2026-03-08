@@ -24,8 +24,8 @@ class DataIngestion:
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True) # create directories if they don't exist
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True) # save raw data to CSV
             train_set, test_set = train_test_split(df, test_size=0.2, random_state=42) # split data into training and testing sets
-            df.to_csv(self.ingestion_config.train_data_path, index=False, header=True) # save training data to CSV
-            df.to_csv(self.ingestion_config.test_data_path, index=False, header=True) # save testing data to CSV
+            train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True) # save training data to CSV
+            test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True) # save testing data to CSV
             logging.info("Ingestion of the data is completed")
             
             return(self.ingestion_config.train_data_path, self.ingestion_config.test_data_path) # return paths to training and testing data
